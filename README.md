@@ -1,3 +1,1 @@
-# Django Project Template
-
-Django project template
+# Django Custom Field Validator

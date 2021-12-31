@@ -1,3 +1,5 @@
+from django.core import validators
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -8,8 +10,9 @@ class Product(models.Model):
     """
 
     web_id = models.CharField(
-        _("Product Web Id"),
+        _("Product Website Id"),
         max_length=13,
+        validators=[RegexValidator(r"^\d\d\d-\d\d-\d\d-\d\d\d$", _("Enter a valid web id."), "invalid")],
         unique=True,
         null=False,
         blank=False,
@@ -35,3 +38,6 @@ class Product(models.Model):
         null=False,
         blank=False,
     )
+
+    def __str__(self) -> str:
+        return self.name
